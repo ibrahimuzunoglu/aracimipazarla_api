@@ -1,0 +1,7 @@
+Flask
+Flask-MongoEngine
+python-dotenv
+pymongo
+flask-cors
+werkzeug
+jwt
