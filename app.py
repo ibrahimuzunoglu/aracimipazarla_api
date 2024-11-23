@@ -10,7 +10,6 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 from flask.json.provider import DefaultJSONProvider
 
-Flask.json.JSONEncoder = DefaultJSONProvider
 
 
 # .env dosyasını yükle
