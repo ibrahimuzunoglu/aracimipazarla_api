@@ -1,4 +1,4 @@
-Flask
+Flask==2.2.2
 Flask-Cors==5.0.0
 flask-mongoengine==1.0.0
 pymongo==4.8.0
