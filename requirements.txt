@@ -3,6 +3,6 @@ Flask-Cors==5.0.0
 flask-mongoengine==1.0.0
 pymongo==4.8.0
 python-dotenv
-Werkzeug
+Werkzeug==2.0.3
 PyJWT
 gunicorn==20.1.0
