@@ -52,7 +52,7 @@ class User(db.Document):
     }
 
 
-# Kayıt işlemi
+# Kayıt işlemi yapılıyor
 @app.route('/api/register', methods=['POST'])
 def register():
     data = request.get_json()
