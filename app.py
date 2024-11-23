@@ -21,7 +21,7 @@ CORS(app)
 # Çevre değişkenleri
 SECRET_KEY = os.getenv('SECRET_KEY', 'vatanmilletsakarya')
 MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb+srv://ibrahim:oZGNRekl3ltKTHxq@aracimipazarla.g7b0j.mongodb.net/aracimipazarla')
-client = MongoClient(MONGODB_URI, uri, ssl=True, ssl_cert_reqs=ssl.CERT_NONE)
+client = MongoClient(MONGODB_URI)
 
 db = client['aracimipazarla']  # Veritabanı adı
 collection = db['cars']
