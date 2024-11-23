@@ -1,5 +1,5 @@
-Flask
-Flask-MongoEngine
+Flask==2.1
+flask-mongoengine
 python-dotenv
 pymongo
 flask-cors
