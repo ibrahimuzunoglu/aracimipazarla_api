@@ -203,13 +203,11 @@ def save_car_info():
 
 
 @app.route('/buysave', methods=['POST'])
-@token_required
-def buy_car_info(current_user):
+def buy_car_info():
     data = request.json
     try:
         # Formdan alınan veriler
         buy_car_info = {
-            "user_id": str(current_user.id),
             "brand": data.get("brand"),
             "model": data.get("model"),
             "detail": data.get("detail"),
