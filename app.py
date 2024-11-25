@@ -227,5 +227,15 @@ def buy_car_info():
         return jsonify({"message": "Veri kaydedilirken hata oluştu", "error": str(e)}), 500
 
 
+@app.route('/api/logout', methods=['POST'])
+@token_required
+def logout(current_user):
+    try:
+        # Çıkış işlemi sırasında herhangi bir sunucu işlemi yapmanız gerekmiyor.
+        return jsonify({'message': 'Başarıyla çıkış yapıldı!'}), 200
+    except Exception as e:
+        return jsonify({'message': 'Çıkış işlemi sırasında bir hata oluştu.', 'error': str(e)}), 500
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
