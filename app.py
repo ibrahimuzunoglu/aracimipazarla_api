@@ -17,6 +17,7 @@ load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 # Çevre değişkenleri
 SECRET_KEY = os.getenv('SECRET_KEY', 'vatanmilletsakarya')
