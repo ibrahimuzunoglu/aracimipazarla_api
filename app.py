@@ -107,7 +107,11 @@ def login():
                 algorithm="HS256"
             )
 
-            return jsonify({'message': 'Giriş başarılı', 'token': token}), 200
+            return jsonify({
+                'message': 'Giriş başarılı',
+                'token': token,
+                'username': user.username  # Username bilgisi de ekleniyor
+            }), 200
         else:
             return jsonify({'message': 'E-posta veya şifre hatalı'}), 401
 
@@ -164,7 +168,8 @@ def user_profile(current_user):
         'email': current_user.email,
         'location': current_user.location
     }), 200
-    
+
+
     
 @app.route('/api/cars', methods=['GET'])
 def get_cars():
@@ -228,14 +233,7 @@ def buy_car_info():
         return jsonify({"message": "Veri kaydedilirken hata oluştu", "error": str(e)}), 500
 
 
-@app.route('/api/logout', methods=['POST'])
-@token_required
-def logout(current_user):
-    try:
-        # Çıkış işlemi sırasında herhangi bir sunucu işlemi yapmanız gerekmiyor.
-        return jsonify({'message': 'Başarıyla çıkış yapıldı!'}), 200
-    except Exception as e:
-        return jsonify({'message': 'Çıkış işlemi sırasında bir hata oluştu.', 'error': str(e)}), 500
+
 
 
 if __name__ == '__main__':
