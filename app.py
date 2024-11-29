@@ -220,12 +220,13 @@ def buy_car_info():
             "year": data.get("year"),
             "km": data.get("km"),
             "isDamaged": data.get("isDamaged"),
-            "appointment-date":data.get("date"),
+            "appointment-date": data.get("date"),
             "additionalInfo": data.get("additionalInfo"),
-            "minprice":data.get("minPrice"),
-            "maxprice":data.get("maxPrice")
+            "minprice": data.get("minPrice"),
+            "maxprice": data.get("maxPrice"),
+            "username": data.get("username")  # Yeni username alanı
         }
-        
+
         # Veriyi MongoDB'ye kaydetme
         result = collection_buy.insert_one(buy_car_info)
         return jsonify({"message": "Araç bilgileri başarıyla kaydedildi!", "id": str(result.inserted_id)}), 201
