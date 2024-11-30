@@ -197,7 +197,8 @@ def save_car_info():
             "appointment-date":data.get("date"),
             "additionalInfo": data.get("additionalInfo"),
             "paintedParts": data.get("paintedParts", []),  # Boyalı parçalar
-            "changedParts": data.get("changedParts", [])
+            "changedParts": data.get("changedParts", []),
+            "username": data.get("username")  
         }
         
         # Veriyi MongoDB'ye kaydetme
