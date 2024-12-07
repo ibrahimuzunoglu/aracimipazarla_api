@@ -185,6 +185,7 @@ def get_cars():
 @app.route('/sellsave', methods=['POST'])
 def save_car_info():
     data = request.json
+    print(data)
     try:
         # Formdan alınan veriler
         car_info = {
