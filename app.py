@@ -28,6 +28,7 @@ db = client['aracimipazarla']  # Veritabanı adı
 collection = db['cars']
 collection_sell = db.users_sell  # koleksiyon adı
 collection_buy = db.users_buy  # koleksiyon adı
+collection_advert = db.users_advert
 
 # MongoDB yapılandırması
 app.config['MONGODB_SETTINGS'] = {
@@ -236,7 +237,27 @@ def buy_car_info():
         return jsonify({"message": "Veri kaydedilirken hata oluştu", "error": str(e)}), 500
 
 
-
+@app.route('/api/create/advert', methods=['POST'])
+def create_advert():
+    data = request.json
+    try:
+        create_car_advert = {
+            "brand": data.get("brand"),
+            "model": data.get("model"),
+            "year": data.get("year"),
+            "km": data.get("km"),
+            "isDamaged": data.get("isDamaged"),
+            "additionalInfo": data.get("additionalInfo"),
+            "gear": data.get("gear"),
+            "fuel": data.get("fuel"),
+            "color": data.get("color"),
+            "price": data.get("price"),
+            "username": data.get("username"),
+        }
+        result = collection_advert.insert_one(create_car_advert)
+        return jsonify({"message": "Araç bilgileri başarıyla kaydedildi!", "id": str(result.inserted_id)}), 201
+    except Exception as e:
+        return jsonify({"message": "Veri kaydedilirken hata oluştu", "error": str(e)}), 500
 
 
 if __name__ == '__main__':
