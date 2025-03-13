@@ -29,6 +29,7 @@ collection = db['cars']
 collection_sell = db.users_sell  # koleksiyon adı
 collection_buy = db.users_buy  # koleksiyon adı
 collection_advert = db.users_advert
+collection_location = db.places
 
 # MongoDB yapılandırması
 app.config['MONGODB_SETTINGS'] = {
