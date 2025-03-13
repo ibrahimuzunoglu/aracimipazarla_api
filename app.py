@@ -260,5 +260,41 @@ def create_advert():
         return jsonify({"message": "Veri kaydedilirken hata oluştu", "error": str(e)}), 500
 
 
+@app.route('/api/user/location', methods=['POST'])
+def user_location():
+    data = request.json
+    try:
+        user_lat = float(data.get("lat"))
+        user_long = float(data.get("long"))
+
+        nearest_place = collection_location.find_one(
+            {
+                "location": {
+                    "$near": {
+                        "$geometry": {
+                            "type": "Point",
+                            "coordinates": [user_long, user_lat]  
+                        }
+                    }
+                }
+            }
+        )
+
+        if nearest_place:
+            return jsonify({
+                "id": str(nearest_place["_id"]),
+                "name": nearest_place["name"],
+                "location": {
+                    "type": nearest_place["location"]["type"],
+                    "coordinates": nearest_place["location"]["coordinates"]
+                }
+            })
+        else:
+            return jsonify({"message": "Yakın mekan bulunamadı."}), 404
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
