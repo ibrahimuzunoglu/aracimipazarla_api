@@ -264,6 +264,7 @@ def create_advert():
 @app.route('/api/user/location', methods=['POST'])
 def user_location():
     data = request.json
+    print(data)
     try:
         user_lat = float(data.get("lat"))
         user_long = float(data.get("long"))
