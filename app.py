@@ -277,7 +277,7 @@ def user_location():
                             "type": "Point",
                             "coordinates": [user_lat, user_long]
                         },
-                        "$maxDistance": 5000
+                        "$maxDistance": 50000
                     }
                 }
             }
