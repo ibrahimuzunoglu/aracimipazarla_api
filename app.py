@@ -275,7 +275,7 @@ def user_location():
                     "$near": {
                         "$geometry": {
                             "type": "Point",
-                            "coordinates": [user_lat, user_long]
+                            "coordinates": [user_long, user_lat]
                         },
                         "$maxDistance": 50000
                     }
