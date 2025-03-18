@@ -269,30 +269,35 @@ def user_location():
         user_lat = float(data.get("lat"))
         user_long = float(data.get("long"))
 
-        nearest_place = collection_location.find_one(
+        places_cursor = collection_location.find(
             {
                 "location": {
                     "$near": {
                         "$geometry": {
                             "type": "Point",
-                            "coordinates": [user_long, user_lat]  
-                        }
+                            "coordinates": [user_lat, user_long]
+                        },
+                        "$maxDistance": 5000
                     }
                 }
             }
         )
 
-        if nearest_place:
-            return jsonify({
-                "id": str(nearest_place["_id"]),
-                "name": nearest_place["name"],
+        places = []
+        for place in places_cursor:
+            places.append({
+                "id": str(place["_id"]),
+                "name": place["name"],
                 "location": {
-                    "type": nearest_place["location"]["type"],
-                    "coordinates": nearest_place["location"]["coordinates"]
+                    "type": place["location"]["type"],
+                    "coordinates": place["location"]["coordinates"]
                 }
             })
+
+        if places:
+            return jsonify(places)
         else:
-            return jsonify({"message": "Yakın mekan bulunamadı."}), 404
+            return jsonify({"message": "2 km içinde mekan bulunamadı."}), 404
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
